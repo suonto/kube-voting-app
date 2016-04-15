@@ -1,0 +1,24 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    run: voting-app
+  name: voting-app
+  namespace: default
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        run: voting-app
+    spec:
+      containers:
+      - image: suonto/voting-app:latest
+        imagePullPolicy: Always
+        name: voting-app
+        ports:
+        - containerPort: 80
+          protocol: TCP
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      securityContext: {}
